@@ -13,6 +13,15 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'view' => [
+            'theme' => [
+                'basePath' => '@frontend/themes/creative',
+                'baseUrl' => '@web/themes/creative',
+                'pathMap' => [
+                    '@frontend/views' => '@frontend/themes/creative',
+                ],
+            ],
+        ],
         'urlManager' => [
             'class' => 'yii\web\urlManager',
             'enablePrettyUrl' => false,
@@ -26,7 +35,7 @@ return [
             'showScriptName' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\Employee',
             'enableAutoLogin' => true,
         ],
         'log' => [

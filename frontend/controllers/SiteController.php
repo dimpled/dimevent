@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\LoginForm;
+use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -96,25 +96,18 @@ class SiteController extends Controller
         }
     }
 
-    public function actionLogin()
-    {
+    public function actionLogin() {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-         $model = new LoginForm();
-
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-       
+        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            
             return $this->goBack();
         } else {
             return $this->render('login', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -200,5 +193,26 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionLoginPopup() {
+        if (Yii::$app->getRequest()->isAjax) {
+           
+
+            $model = new LoginForm();
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                 $result = [
+                'status' => 'success'
+                ];
+                return $result;
+
+            } else {
+                return $this->renderAjax('/site/login_popup', [
+                            'model' => $model,
+                ]);
+            }
+        }
     }
 }

@@ -1,0 +1,19 @@
+<?php
+
+use yii\helpers\Html;
+
+
+/* @var $this yii\web\View */
+/* @var $model frontend\models\Registration */
+
+$this->title = Yii::t('app', 'Create Registration');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Registrations'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="registration-create">
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

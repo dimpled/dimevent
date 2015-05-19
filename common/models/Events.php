@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\helpers\Json;
+
 /**
  * This is the model class for table "events".
  *
