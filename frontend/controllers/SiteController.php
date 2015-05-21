@@ -196,23 +196,5 @@ class SiteController extends Controller
     }
 
 
-    public function actionLoginPopup() {
-        if (Yii::$app->getRequest()->isAjax) {
-           
 
-            $model = new LoginForm();
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                 $result = [
-                'status' => 'success'
-                ];
-                return $result;
-
-            } else {
-                return $this->renderAjax('/site/login_popup', [
-                            'model' => $model,
-                ]);
-            }
-        }
-    }
 }

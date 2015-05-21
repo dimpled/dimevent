@@ -30,8 +30,9 @@ class LoginForm extends Model
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
             ['password', 'validateExpiredUser'],
+            ['password', 'validatePassword'],
+            
         ];
     }
 
@@ -48,7 +49,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {    
-                $this->addError($attribute, 'Incorrect username or passwords.'.$user->old_password($this->password));
+                $this->addError($attribute, 'Incorrect username or passwords.');
             }
         }
     }
@@ -57,7 +58,7 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();          
-            if(!$user || !$user->expire === '0000-00-00'){
+            if($user && $user->expire != '0000-00-00'){
                 $this->addError($attribute, 'Your account is expired!.');
             }
         }

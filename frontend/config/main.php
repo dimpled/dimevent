@@ -23,12 +23,12 @@ return [
             ],
         ],
         'urlManager' => [
-            'class' => 'yii\web\urlManager',
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => false,
             'showScriptName' => true,
         ],
         'urlManagerBackend' => [
-            'class' => 'yii\web\urlManager',
+            'class' => 'yii\web\UrlManager',
             'baseUrl' => '/yii2/dimvent/backend/web',
             'scriptUrl'=>'http://127.0.0.1/yii2/dimvent/backend/web/index.php',
             'enablePrettyUrl' => true,

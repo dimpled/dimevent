@@ -51,6 +51,15 @@ p {
     line-height: 1.5;
 }
 
+.bg-schedule{
+    /*background-color: #F0404D;*/
+    background-color: rgb(237, 131, 47);
+    
+}
+.bg-schedule > th{
+    color: #FFF!important;
+}
+
 .bg-primary {
     background-color: #f05f40;
 }
@@ -59,6 +68,13 @@ p {
     color: #fff;
     background-color: #222;
 }
+
+.bg-title1 {
+    color: #fff;
+    background-color: #34495A;
+}
+
+  
 
 .text-faded {
     color: rgba(255,255,255,.7);

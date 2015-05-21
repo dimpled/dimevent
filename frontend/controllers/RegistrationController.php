@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use frontend\models\LoginForm;
+use yii\widgets\ActiveForm;
 
 /**
  * RegistrationController implements the CRUD actions for Registration model.
@@ -27,7 +28,7 @@ class RegistrationController extends Controller
 		'rules' => [
 		    [
 			'allow' => true,
-			'actions' => ['index', 'view','create','login'], 
+			'actions' => ['index', 'view','create','login-popup'], 
 			'roles' => ['?', '@'],
 		    ],
 		    [
@@ -95,12 +96,18 @@ class RegistrationController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($type=1)
     {
 	if (Yii::$app->getRequest()->isAjax) {
 	    $model = new Registration();
 
-	    $model = $this->setDataEmp($model);
+		$model->personal_type = $type;
+
+		if($type==1){
+			$model = $this->setDataEmp($model);
+		}
+	    
+	    
 
 	    if ($model->load(Yii::$app->request->post())) {
 		Yii::$app->response->format = Response::FORMAT_JSON;
@@ -135,6 +142,7 @@ class RegistrationController extends Controller
     	if(!Yii::$app->user->isGuest){
     		$user = Employee::findOne(['code'=>Yii::$app->user->id]);
     		$model->personal_type = 1;
+    		$model->email = $user->email;
             $model->title = $user->title;
             $model->fist_name = $user->name;
             $model->last_name = $user->surname;
@@ -142,7 +150,9 @@ class RegistrationController extends Controller
             $model->department  = Office::findOne($user->department)->name;
             $model->office = 'โรงพยาบาลขอนแก่น';
             $model->self_office = $user->department;
+            $model->department_id = $user->department;
             $model->province_code  = 28;
+            $model->employee_id = $user->code;
     	}
     	return $model;
     	 
@@ -242,10 +252,37 @@ class RegistrationController extends Controller
             'date'=>$model->register_date
           ])->setFrom(['seminar@kkh.go.th'=>'Khon Kaen Hospital'])
          ->setTo($email)
-         ->setSubject('ลงทะเบียนงานประชุมวิชาการโรงพยาบาลขอนแก่น 2558')
-         //->attach(Yii::getAlias('@webroot').'/downloads/'.'doc.pdf')
-         //->attach(Yii::getAlias('@webroot').'/downloads/'.'schedule.pdf')
+         ->setSubject('ยินดีต้อนรับสู่งานประชุมวิชาการโรงพยาบาลขอนแก่น 2558')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'brochure.pdf')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'doc.docx')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'register.docx')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'submission.docx')
          ->send();
+    }
+
+    public function actionLoginPopup() {
+        if (Yii::$app->getRequest()->isAjax) {
+           
+            $model = new LoginForm();
+
+            if ($model->load(Yii::$app->request->post()) && !$model->validate()) {
+			    Yii::$app->response->format = Response::FORMAT_JSON;
+			    return ActiveForm::validate($model);
+			}
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                 $result = [
+                	'status' => 'success'
+                 ];
+                return $result;
+
+            } else {
+                return $this->renderAjax('/registration/login_popup', [
+                            'model' => $model
+                ]);
+            }
+        }
     }
 
 

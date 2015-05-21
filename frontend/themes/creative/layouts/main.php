@@ -52,20 +52,25 @@ CreativeAsset::register($this);
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">กำหนดการ</a>
+                        <a class="page-scroll" href="#schedule">กำหนดการ</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">ตารางประชุม</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">ดาวน์โหลด</a>
+                        <a class="page-scroll" href="#submission">ส่งผลงาน</a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a class="page-scroll" href="#download">ดาวน์โหลด</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">ติดต่อเรา</a>
                     </li>
-                     <li>
+                     <!-- <li>
                         <a class="page-scroll" data-method="post" href="index.php?r=site/logout">Logout</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -74,33 +79,33 @@ CreativeAsset::register($this);
     </nav>
 
          <?php
-            NavBar::begin([
-                'brandLabel' => '<img class="brand-logo" src="images/dimple-logo-white.svg" />',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                //['label' => 'About', 'url' => ['/site/about']],
-                //['label' => 'Contact', 'url' => ['/site/contact']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->id . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
-            }
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-            ]);
-            NavBar::end();
+            // NavBar::begin([
+            //     'brandLabel' => '<img class="brand-logo" src="images/dimple-logo-white.svg" />',
+            //     'brandUrl' => Yii::$app->homeUrl,
+            //     'options' => [
+            //         'class' => 'navbar-inverse navbar-fixed-top',
+            //     ],
+            // ]);
+            // $menuItems = [
+            //     ['label' => 'Home', 'url' => ['/site/index']],
+            //     //['label' => 'About', 'url' => ['/site/about']],
+            //     //['label' => 'Contact', 'url' => ['/site/contact']],
+            // ];
+            // if (Yii::$app->user->isGuest) {
+            //     $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+            //     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            // } else {
+            //     $menuItems[] = [
+            //         'label' => 'Logout (' . Yii::$app->user->identity->id . ')',
+            //         'url' => ['/site/logout'],
+            //         'linkOptions' => ['data-method' => 'post']
+            //     ];
+            // }
+            // echo Nav::widget([
+            //     'options' => ['class' => 'navbar-nav navbar-right'],
+            //     'items' => $menuItems,
+            // ]);
+            // NavBar::end();
         ?>
 
 <?=$content;?>

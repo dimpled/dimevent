@@ -25,12 +25,7 @@ use kartik\widgets\Select2;
 	<div class="modal-body">
 		
 
-		<div class="row">
-			<div class="col-md-12">
-				<?= $form->field($model, 'personal_type')->inline()->radioList([ 1 => 'รพ.ขอนแก่น', 2 => 'ภายนอก', ]) ?>
-			</div>
-			
-		</div>
+
 
 		<div id="form-regis">
 
@@ -96,19 +91,20 @@ use kartik\widgets\Select2;
 
 		<div class="row">
 			<div class="col-md-6">
-			<?= $form->field($model, 'department')->textInput(['maxlength' => 150]) ?>
-			</div>
-			<div class="col-md-6">
-			<?= $form->field($model, 'office')->textInput(['maxlength' => 50]) ?>
-			<?= $form->field($model, 'self_office')->widget(Select2::classname(), [
+			<?= $model->personal_type==1?$form->field($model, 'department_id')->widget(Select2::classname(), [
 		        'language' => 'th',
 		        'data' => ArrayHelper::merge(ArrayHelper::map(Office::find()->all(),'ref','name'),['99999'=>'อื่นๆ']),
 		        'options' => ['placeholder' => 'เลือกหน่วยงาน ...'],
 		        'pluginOptions' => [
 		            'allowClear' => true
 		        ],
-		    ]);
+		    ]):null;
 		    ?>
+			<?= $model->personal_type==2?$form->field($model, 'department')->textInput(['maxlength' => 150]):null; ?>
+			</div>
+			<div class="col-md-6">
+			<?= $form->field($model, 'office')->textInput(['maxlength' => 50]) ?>
+			
 			</div>
 		</div>
 
@@ -138,11 +134,10 @@ use kartik\widgets\Select2;
 
 <?php  $this->registerJs("
 
-setPersonalType($('input[name=\"Registration[personal_type]:checked').val());
+//setPersonalType($('input[name=\"Registration[personal_type]:checked').val());
 
 $('form#{$model->formName()}').on('change', 'input[name=\"Registration[personal_type]\"]', function(e){
-	setPersonalType($(this).val());
-
+	//setPersonalType($(this).val());
 });
 
 function setPersonalType(value){

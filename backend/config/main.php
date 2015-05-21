@@ -15,12 +15,12 @@ return [
     'modules' => [],
     'components' => [
         'urlManager' => [
-            'class' => 'yii\web\urlManager',
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => false,
             'showScriptName' => true,
         ],
         'urlManagerFrontend' => [
-            'class' => 'yii\web\urlManager',
+            'class' => 'yii\web\UrlManager',
             'baseUrl' => '/yii2/dimvent/frontend/web/',
             'enablePrettyUrl' => false,
             'showScriptName' => true,
