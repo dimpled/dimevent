@@ -38,7 +38,7 @@ class Registration extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['province_code','title','fist_name','last_name','office','position','personal_type','sex','age','email','occupation','department','cell_phone'],'required'],
+            [['province_code','title','fist_name','last_name','office','position','personal_type','sex','age','email','occupation','cell_phone'],'required'],
             [['register_date'], 'safe'],
             [['sex'], 'string'],
             [['age','personal_type','employee_id'], 'integer'],
@@ -78,6 +78,19 @@ class Registration extends \yii\db\ActiveRecord
             'occupation' => Yii::t('app', 'อาชีพ'),
             'occupation_other'=>Yii::t('app', 'อาชีพอื่นๆ'),
             'province_code'=>Yii::t('app', 'จังหวัด'),
+            'fullName'=>Yii::t('app', 'ชื่อ-นามสกุล'),
         ];
+    }
+
+    public function getFullName(){
+        return $this->title.$this->fist_name.' '.$this->last_name;
+    }
+
+    public function getDepartment(){
+        return @$this->hasOne(department::className(),['code'=>'self_office']);
+    }
+    
+    public function getDepartmentName(){
+        return @$this->department->name;
     }
 }

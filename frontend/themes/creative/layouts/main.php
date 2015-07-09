@@ -61,16 +61,13 @@ CreativeAsset::register($this);
                         <a class="page-scroll" href="#submission">ส่งผลงาน</a>
                     </li>
                     
-                    
                     <li>
                         <a class="page-scroll" href="#download">ดาวน์โหลด</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">ติดต่อเรา</a>
                     </li>
-                     <!-- <li>
-                        <a class="page-scroll" data-method="post" href="index.php?r=site/logout">Logout</a>
-                    </li> -->
+                     
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -9,18 +9,23 @@ use common\lib\sdii\widgets\SDGridView;
 use common\lib\sdii\widgets\SDModalForm;
 use common\lib\sdii\components\helpers\SDNoty;
 /* @var $this yii\web\View */
-$this->title = 'My Yii Application';
+$this->title = 'งานประชุมวิชาการ โรงพยาบาลขอนแก่น';
 ?>
-
     <header>
         <div class="header-content">
+
             <div class="header-content-inner">
+                <br> <br>
+                <div class="row">
+                  <div class="col-md-6 col-xs-6 text-right"><img style="width:190px;" class="img-rounded" src="img/kkh.png" ></div>
+                  <div class="col-md-6 col-xs-6 text-left"><img style="width:220px;" class="img-rounded" src="img/kkmec.png" ></div>
+                </div>
                 <h1>คุณธรรม คู่คุณภาพ เพื่อประชาชน</h1>
                 <hr>
                 <p style="margin-bottom:0;">งานประชุมวิชาการ  ครั้งที่ 7 ประจำปี 2558</p>
-                <p >เนื่องในโอกาสครบรอบ 20 ปี ศูนย์แพทยศาสตรศึกษาชั้นคลินิก โรงพยาบาลขอนแก่น</p>
-                <p> 24 -  26 มิถุนายน 2558 ณ โรงพยาบาลขอนแก่น</p>
-                <?= Html::a(Yii::t('app', '<span class="glyphicon glyphicon-plus"></span> ลงทะเบียน'),'#registration', ['data-url'=>Url::to(['registration/create']), 'class' => 'btn btn-primary btn-xl', 'id'=>'modal-addbtn-registration'])?>
+                <p style="margin-bottom:10px;">เนื่องในโอกาสครบรอบ 20 ปี ศูนย์แพทยศาสตรศึกษาชั้นคลินิก โรงพยาบาลขอนแก่น</p>
+                <p style="margin-bottom:10px;"><strong >24 -  26</strong>   มิถุนายน 2558 ณ โรงพยาบาลขอนแก่น</p>
+                <?php  Html::a(Yii::t('app', '<span class="glyphicon glyphicon-plus"></span> ลงทะเบียน'),'#registration', ['data-url'=>Url::to(['registration/create']), 'class' => 'btn btn-primary btn-xl', 'id'=>'modal-addbtn-registration'])?>
                  <!-- <a href="#about" class="btn btn-primary btn-xl page-scroll"> <span class="glyphicon glyphicon-edit"></span> ส่งผลงาน</a> -->
             </div>
         </div>
@@ -30,6 +35,7 @@ $this->title = 'My Yii Application';
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+
                     <h2 class="section-heading">กำหนดการ</h2>
                     <hr class="light">
                     <p class="text-faded">
@@ -46,6 +52,43 @@ $this->title = 'My Yii Application';
     </section>
 
 
+
+<section id="services">
+  <div class="container">
+
+   <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+
+        <div class="row">
+              <div class="col-lg-12 text-center">
+                  <h2 class="section-heading">การประกาศผลการคัดเลือกผลงาน</h2>
+                 
+                  <hr class="primary">
+              </div>
+        </div>
+        <p>
+         <a class="btn btn-primary btn-lg" href="<?= Url::to('/downloads/18658.zip');?>">ดาวน์โหลด </a>
+        <h4>ประเภท e-Poster</h4>
+        การเตรียมความพร้อมในการนำเสนอประเภท e-Poster ให้ผู้นำเสนอทำโปสเตอร์ หรือ graphic design
+
+เป็น PDF file โดยทำเป็นขนาด A4 แล้ว save เป็นภาพ jpeg เพื่อนำเสนอผ่าน Projector 
+
+โดยจัดส่งไฟล์ที่จะนำเสนอ ล่วงหน้าภายในวันที่ 23 มิถุนายน 2558 เวลา 08.30 - 16.00น.  ที่ศูนย์วิจัย                               
+
+email: library.kkh@gmail.com เวลาที่ใช้ในการนำเสนอ 5 นาที กรรมการซักถาม 2 นาที รวมเป็น 7 นาที
+
+(หมายเหตุ:  คณะกรรมการจะจัดให้มีการซักซ้อมทำความเข้าใจวิธีการนำเสนอก่อน ในวันที่ 19 มิถุนายน 2558 
+
+เวลา 13.30–14.30น. ณ ห้องสมุด ชั้น 1 อาคารเฉลิมพระเกียรติ 6 รอบพระชนมพรรษา โรงพยาบาลขอนแก่น)
+        </p>
+       
+        </div>
+      </div>
+      
+  </div>
+</section>
+
+
 <section id="services">
 <div class="container">
 
@@ -60,18 +103,18 @@ $this->title = 'My Yii Application';
                     </div>
                 </div>
 
+          <img src="img/poster.png" class="img-responsive img-thumbnail" >
+          <img src="img/schedule.png" class="img-responsive img-thumbnail" >
+          </div>
+    </div>
 
-          <table class="table table-striped">
+<!--           <table style="margin-top:20px;" class="table table-striped">
           <thead>
            <tr class="bg-schedule">
               <th colspan="2" class="text-primary " >วันพุธที่ 24 มิถุนายน 2558</th>
               
             </tr>
-           <!--  <tr>
-              <th>เวลา</th>
-              <th class="text-left">เรื่อง</th>
-              
-            </tr> -->
+         
           </thead>
           <tbody>
             <tr>
@@ -95,11 +138,19 @@ $this->title = 'My Yii Application';
             </tr>
             <tr>
               <th scope="row">13:00 - 14:30 น.</th>
-              <td class="text-left"><strong class="text-info">Poster Show, ประกวดe-Poster, Poster, Innovation</strong></td>
-             
+              <td class="text-left">
+              <strong class="text-info">Research Show</strong><br>
+              <ul>
+                <li><i>R2R</i>  คุณวราภรณ์ ประทุมนันท์ งานควบคุมและป้องกันโรคติดเชื้อ โรงพยาบาลขอนแก่น  <br></li>
+                <li><i>Systematic Review และ Meta-analysis</i> นศพ. เรวดี  วงศ์อามาตย์  นักศึกษาแพทย์ชั้นปีที่ 6 ศูนย์แพทยศาสตรศึกษาชั้นคลินิก โรงพยาบาลขอนแก่น<br></li>
+                <li><i>งานวิจัยจาก รพ.สต. โดยคุณอ้อมฤทัย มั่นในบุญธรรม นักวิชาการสาธารณสุขชำนาญการ จากศูนย์สุขภาพชุมชนบ้านหนองกุง</i> </li>
+              </ul>
+               ดำเนินรายการโดย ดร.นพ.ธนชัย พนาพุฒิ ผู้อำนวยการศูนย์วิจัย โรงพยาบาลขอนแก่น<br>
+              <strong class="text-info">ประกวด Oral, e-Poster, Poster, Innovation</strong>
+              </td>
             </tr>
             <tr>
-              <th scope="row">14:45 - 16:00 น.</th>
+              <th scope="row">14:30 - 16:00 น.</th>
               <td class="text-left"> <strong class="text-info">โค้ชเชิงบวก (Appreciative Inquiry Coaching) </strong>โดย ดร.ภิญโญ รัตนาพันธุ์ วิทยาลัยบัณฑิตศึกษาการจัดการ (MBA) มหาวิทยาลัยขอนแก่น</td>
               
             </tr>
@@ -111,25 +162,19 @@ $this->title = 'My Yii Application';
               <th colspan="2" class="text-primary">วันพุธที่ 25 มิถุนายน 2558</th>
               
             </tr>
-            <tr>
-              <th>เวลา</th>
-              <th>เรื่อง</th>
-              
-            </tr>
+            
           </thead>
           <tbody>
             <tr>
               <th scope="row" style="width:150px;">09:00 - 09:30 น.</th>
               <td class="text-left" ><strong class="text-info">2 ทศวรรษแห่งการผลิตแพทย์เพื่อประชาชน (Multimedia)</strong> และการแสดงของนักศึกษาแพทย์
 
-ศูนย์แพทยศาสตรศึกษาชั้นคลินิก โรงพยาบาลขอนแก่น และคณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น
-
-มอบรางวัลศิษย์เก่าดีเด่น ของโรงพยาบาลขอนแก่น</td>
+ศูนย์แพทยศาสตรศึกษาชั้นคลินิก โรงพยาบาลขอนแก่น และคณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น</td>
               
             </tr>
             <tr>
               <th scope="row">09:30 - 10:00 น.</th>
-              <td class="text-left" ><strong class="text-info">มอบรางวัลศิษย์เก่าดีเด่น</strong> ของโรงพยาบาลขอนแก่น</td>
+              <td class="text-left" >มอบรางวัลศิษย์เก่าดีเด่น ของโรงพยาบาลขอนแก่น</td>
              
             </tr>
             <tr>
@@ -174,11 +219,7 @@ $this->title = 'My Yii Application';
               <th colspan="2" class="text-primary">วันพุธที่ 26 มิถุนายน 2558</th>
               
             </tr>
-            <tr>
-              <th>เวลา</th>
-              <th>เรื่อง</th>
-              
-            </tr>
+            
           </thead>
           <tbody>
             <tr>
@@ -224,10 +265,7 @@ $this->title = 'My Yii Application';
                     <hr class="light">
                     
                     <p>ส่งผลงานเข้าร่วมประกวด ได้ตั้งแต่บัดนี้ จนถึงวันที่ 10 มิถุนายน 2558</p>
-                    <!-- <a href="#" class="btn btn-default btn-xl">รายละเอียด</a> -->
-        
-                     <!-- <a href="#" class="btn btn-default btn-xl">ลงทะเบียนส่งผลงาน</a> -->
-                </div>
+                                   </div>
             </div>
         </div>
     </section>
@@ -336,7 +374,7 @@ $this->title = 'My Yii Application';
 
 <p class="text-left">
     ที่ ศูนย์วิจัย โรงพยาบาลขอนแก่น  
-</p>
+</p> -->
 
     </section>
 
@@ -442,6 +480,28 @@ $this->title = 'My Yii Application';
             <div class="call-to-action">
                 <h2>ดาวน์โหลดเอกสาร</h2>
                 <a href="downloads/attach.zip" class="btn btn-default btn-xl wow tada">Download Now!</a>
+      
+      <br> <br>
+      <table class="table">
+
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td class="text-left">หนังสือโครงการประชุมวิชาการ</td>
+         <td><?=Html::a('Download','/attach/web.pdf');?></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td class="text-left">คำชี้แจงส่งผลงานประกวดงานประชุมวิชาการ รพ.ขอนแก่นปี 2558</td>
+          <td><?=Html::a('Download','/attach/explanation.doc');?></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td class="text-left">ใบแจ้งความจำนงส่งผลงานในงานประชุมวิชากรรรพ.ขอนแก่น2558</td>
+          <td><?=Html::a('Download','/attach/submission.doc');?></td>
+        </tr>
+      </tbody>
+    </table>
             </div>
         </div>
     </aside>
@@ -453,7 +513,7 @@ $this->title = 'My Yii Application';
                     <h2 class="section-heading">ติดต่อเรา</h2>
                     <hr class="primary">
                     <p>
-                    ศูนย์วิจัย โรงพยาบาลขอนแก่น  
+                      ศูนย์วิจัย โรงพยาบาลขอนแก่น  
                    </p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">

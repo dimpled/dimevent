@@ -25,8 +25,9 @@
         "kartik-v/yii2-export": "*",
         "yurkinx/yii2-image": "dev-master",
         "2amigos/yii2-gallery-widget" : "*",
-        "rmrevin/yii2-fontawesome": "2.8.*"
-
+        "rmrevin/yii2-fontawesome": "2.8.*",
+        "bower-asset/remarkable-bootstrap-notify":"*",
+        "bower-asset/animateCSS":"*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

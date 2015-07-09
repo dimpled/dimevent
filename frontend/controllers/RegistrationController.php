@@ -28,7 +28,7 @@ class RegistrationController extends Controller
 		'rules' => [
 		    [
 			'allow' => true,
-			'actions' => ['index', 'view','create','login-popup'], 
+			'actions' => ['index', 'view','create','login-popup','regis'], 
 			'roles' => ['?', '@'],
 		    ],
 		    [
@@ -80,16 +80,14 @@ class RegistrationController extends Controller
      */
     public function actionView($id)
     {
-	if (Yii::$app->getRequest()->isAjax) {
-	    return $this->renderAjax('view', [
-		'model' => $this->findModel($id),
-	    ]);
-	} else {
-	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
-	}
+    	if (Yii::$app->getRequest()->isAjax) {
+    	    return $this->renderAjax('view', [
+    		'model' => $this->findModel($id),
+    	    ]);
+    	} else {
+    	    throw new NotFoundHttpException('Invalid request. Please do not repeat this request again.');
+    	}
     }
-
-
 
     /**
      * Creates a new Registration model.
@@ -104,11 +102,21 @@ class RegistrationController extends Controller
 		$model->personal_type = $type;
 
 		if($type==1){
-			$model = $this->setDataEmp($model);
+            if(Yii::$app->user->isGuest===false){
+                $regis = Registration::findOne(['employee_id'=>Yii::$app->user->id]);
+                if($regis != null){
+                    return $this->renderAjax('status',[
+                        'regis' => $regis,
+                    ]);
+                }
+            }else{
+               
+            }
+
+             $model = $this->setDataEmp($model);
+			
 		}
 	    
-	    
-
 	    if ($model->load(Yii::$app->request->post())) {
 		Yii::$app->response->format = Response::FORMAT_JSON;
 			if ($model->save()) {
@@ -119,11 +127,12 @@ class RegistrationController extends Controller
 				'message' => '<strong><i class="glyphicon glyphicon-remove-sign"></i> Success!</strong> ' . Yii::t('app', 'Data completed.'),
 				'data' => $model,
 			    ];
+                //Yii::$app->user->logout();
 			    return $result;
 			} else {
 			    $result = [
 				'status' => 'error',
-				'content' => '<strong><i class="glyphicon glyphicon-remove-sign"></i> Success!</strong> ' . Yii::t('app', 'Can not create the data.'),
+				'content' => $model->getErrors(),
 				'data' => $model,
 			    ];
 			    return $result;
@@ -142,17 +151,17 @@ class RegistrationController extends Controller
     	if(!Yii::$app->user->isGuest){
     		$user = Employee::findOne(['code'=>Yii::$app->user->id]);
     		$model->personal_type = 1;
-    		$model->email = $user->email;
-            $model->title = $user->title;
-            $model->fist_name = $user->name;
-            $model->last_name = $user->surname;
-            $model->position  = $user->position;
-            $model->department  = Office::findOne($user->department)->name;
-            $model->office = 'โรงพยาบาลขอนแก่น';
-            $model->self_office = $user->department;
+    		$model->email         = $user->email;
+            $model->title         = $user->title;
+            $model->fist_name     = $user->name;
+            $model->last_name     = $user->surname;
+            $model->position      = $user->position;
+            $model->department    = @Office::findOne($user->department)->name;
+            $model->office        = 'โรงพยาบาลขอนแก่น';
+            $model->self_office   = $user->department;
             $model->department_id = $user->department;
-            $model->province_code  = 28;
-            $model->employee_id = $user->code;
+            $model->province_code = 28;
+            $model->employee_id   = $user->code;
     	}
     	return $model;
     	 
@@ -254,9 +263,10 @@ class RegistrationController extends Controller
          ->setTo($email)
          ->setSubject('ยินดีต้อนรับสู่งานประชุมวิชาการโรงพยาบาลขอนแก่น 2558')
          ->attach(Yii::getAlias('@webroot').'/attach/'.'brochure.pdf')
-         ->attach(Yii::getAlias('@webroot').'/attach/'.'doc.docx')
+         //->attach(Yii::getAlias('@webroot').'/attach/'.'Poster.pdf')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'explanation.doc')
          ->attach(Yii::getAlias('@webroot').'/attach/'.'register.docx')
-         ->attach(Yii::getAlias('@webroot').'/attach/'.'submission.docx')
+         ->attach(Yii::getAlias('@webroot').'/attach/'.'submission.doc')
          ->send();
     }
 
@@ -283,6 +293,15 @@ class RegistrationController extends Controller
                 ]);
             }
         }
+    }
+
+
+    public function actionRegis(){
+        return $this->render('regis');
+    }
+
+    public function actionRegisKkh(){
+        return $this->render('regis_kkh');
     }
 
 

@@ -16,12 +16,12 @@ use kartik\widgets\Select2;
 
 <div class="registration-form">
 
-    <?php $form = ActiveForm::begin(['id'=>$model->formName()]); ?>
+    
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h4 class="modal-title" id="itemModalLabel">ลงทะเบียนเข้าร่วมประชม</h4>
+	    <h4 class="modal-title" id="itemModalLabel">ลงทะเบียนเข้าร่วมประชม <?= (isset(Yii::$app->user->identity->id)?Html::a(' ออกจากระบบ ('.Yii::$app->user->identity->id.')',['/site/logout'],['data-pjax'=>'0','data-method'=>'post']).'</p>':null); ?></h4>
 	</div>
-
+<?php $form = ActiveForm::begin(['id'=>$model->formName()]); ?>
 	<div class="modal-body">
 		
 
@@ -34,6 +34,9 @@ use kartik\widgets\Select2;
     		กรอกรายละเอียด
   		</div>
   		<div class="panel-body">
+
+
+
 
 		<div class="row">
 			<div class="col-md-2"><?= $form->field($model, 'title')->textInput(['maxlength' => 100]) ?></div>
@@ -134,6 +137,8 @@ use kartik\widgets\Select2;
 
 <?php  $this->registerJs("
 
+
+
 //setPersonalType($('input[name=\"Registration[personal_type]:checked').val());
 
 $('form#{$model->formName()}').on('change', 'input[name=\"Registration[personal_type]\"]', function(e){
@@ -164,16 +169,18 @@ $('form#{$model->formName()}').on('change', '#registration-occupation', function
 });
 
 $('form#{$model->formName()}').on('beforeSubmit', function(e){
+	$('.registration-form').dsLoading('start');
     var \$form = $(this);
     $.post(
 	\$form.attr('action'), //serialize Yii2 form
 	\$form.serialize()
     ).done(function(result){
+    $('.registration-form').dsLoading('stop');
 	if(result.status == 'success'){
 	   $(\$form).get(0).reset();
 	   $(\$form).trigger('reset');
 	   $('#modal-registration').modal('hide');
-	    alert('ลงทะเบียนเสร็จเรียบร้อย');
+	    alert('ลงทะเบียนเสร็จเรียบร้อย กรุณาตรวจสอบอีเมล์');
 	} else{
 	   
 	} 

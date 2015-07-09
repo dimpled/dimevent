@@ -1,6 +1,5 @@
 <?php
-
-namespace backend\Controllers;
+namespace backend\controllers;
 
 use Yii;
 use yii\helpers\Url;

@@ -25,7 +25,8 @@ class CreativeAsset extends AssetBundle
         'js/jquery.easing.min.js',
         'js/jquery.fittext.js',
         'js/wow.min.js',
-        'js/creative.js'
+        'js/creative.js',
+        'js/main.js'
     ];
     public $depends = [
 
